@@ -4,16 +4,22 @@ class Assistsku extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-		$this->common_model->checkpurview();
+        $this->common_model->checkpurview();
+        $this->parent = $this->input->cookie("parent");//创建者
+
+        $time=time();//获取系统时间
+        preg_match('/\d{10}/',$time,$matches);
+        $this->newTime =  date('Y-m-d H:i:s',$matches[0]);//当前服务器时间
     }
-    
+
 	//组合属性规格
 	public function index(){
 		$page   = max(intval($this->input->get_post('page',TRUE)),1);
 		$rows   = max(intval($this->input->get_post('rows',TRUE)),100);
 		$where['isDelete']    = 0;
+    $where['parent']    = $this->parent;
 		$where['skuClassId']  = intval($this->input->get('skuClassId',TRUE));
-		$list = $this->mysql_model->get_results('assistsku',$where,'skuId desc');  
+		$list = $this->mysql_model->get_results('assistsku',$where,'skuId desc');
 		foreach ($list as $arr=>$row) {
 			$v[$arr]['skuClassId']    = $row['skuClassId'];
 			$v[$arr]['skuAssistId']   = $row['skuAssistId'];
@@ -21,19 +27,21 @@ class Assistsku extends CI_Controller {
 			$v[$arr]['skuName']       = $row['skuName'];
 		}
 		$json['status'] = 200;
-		$json['msg']    = 'success'; 
+		$json['msg']    = 'success';
 		$json['data']['items']        = isset($v) ? $v : array();
 		$json['data']['totalsize']    = count($list);
-		die(json_encode($json));  
+		die(json_encode($json));
 	}
-	
-	
+
+
 	//新增
 	public function add(){
 		$this->common_model->checkpurview(59);
 		$data['skuAssistId'] = $this->input->get_post('skuAssistId',TRUE);
 		$data['skuClassId']  = $this->input->get_post('skuClassId',TRUE);
 		$data['skuName']     = $this->input->get_post('skuName',TRUE);
+    $data['parent'] = $this->parent;
+    $data['created'] = $this->newTime;
 		if (count($data)>0) {
 			$this->mysql_model->get_count('assistsku',array('skuAssistId'=>$data['skuAssistId'])) > 0 && str_alert(-1,'辅助属性组已存在！');
 			$sql = $this->mysql_model->insert('assistsku',$data);
@@ -44,15 +52,15 @@ class Assistsku extends CI_Controller {
 			}
 		}
 		str_alert(-1,'添加失败');
-	} 
-	
+	}
+
 	//删除
 	public function delete(){
 		$this->common_model->checkpurview(59);
 		$id = intval($this->input->post('id',TRUE));
-		$data = $this->mysql_model->get_rows('assistsku',array('skuId'=>$id)); 
+		$data = $this->mysql_model->get_rows('assistsku',array('skuId'=>$id));
 		if (count($data)>0) {
-			$sql = $this->mysql_model->update('assistsku',array('isDelete'=>1),array('skuId'=>$id));   
+			$sql = $this->mysql_model->update('assistsku',array('isDelete'=>1),array('skuId'=>$id));
 		    if ($sql) {
 				$this->common_model->logs('删除规格:ID='.$id.' 名称:'.$data['skuName']);
 				str_alert(200,'success');
@@ -61,7 +69,7 @@ class Assistsku extends CI_Controller {
 		str_alert(-1,'删除失败');
 	}
 
-	
+
 
 }
 

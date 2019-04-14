@@ -172,7 +172,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate']  = $beginDate = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate   = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="PUR"';
+		$where = 'a.isDelete=0 and a.billType="PUR" and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
@@ -202,7 +202,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="PUR"';
+		$where = 'a.isDelete=0 and a.billType="PUR" and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
@@ -268,7 +268,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate']  = $beginDate = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate   = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="PUR"';
+		$where = 'a.isDelete=0 and a.billType="PUR" and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
@@ -299,7 +299,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="PUR"';
+		$where = 'a.isDelete=0 and a.billType="PUR" and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
@@ -366,7 +366,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate']  = $beginDate = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="PUR"';
+		$where = 'a.isDelete=0 and a.billType="PUR" and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
@@ -399,7 +399,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -465,7 +465,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate']  = $beginDate = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate   = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -497,7 +497,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -580,7 +580,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate'] = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']   = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -614,7 +614,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -707,7 +707,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate']  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and a.billType="SALE"';
+		$where = 'a.isDelete=0 and a.billType="SALE" and a.parent='.$this->parent;
 		$where .= $salesId ? ' and e.number  in('.str_quote($salesId).')' : '';
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $customerNo ? ' and c.number in('.str_quote($customerNo).')' : '';
@@ -741,7 +741,7 @@ class Report extends CI_Controller {
 		$matchCon  = str_enhtml($this->input->get_post('matchCon',TRUE));
 		$supplier  = str_enhtml($this->input->get_post('supplier',TRUE));
 		$customer  = str_enhtml($this->input->get_post('customer',TRUE));
-		$where = 'a.isDelete=0';
+		$where = 'a.isDelete=0 and a.parent='.$this->parent;
 		if ($supplier && $customer) {
 		} else {
 			$where .= $supplier ? ' and type=10' : '';
@@ -783,7 +783,7 @@ class Report extends CI_Controller {
 		$matchCon  = str_enhtml($this->input->get_post('matchCon',TRUE));
 		$supplier  = str_enhtml($this->input->get_post('supplier',TRUE));
 		$customer  = str_enhtml($this->input->get_post('customer',TRUE));
-		$where = 'a.isDelete=0';
+		$where = 'a.isDelete=0 and a.parent='.$this->parent;
 		if ($supplier && $customer) {
 		} else {
 			$where .= $supplier ? ' and type=10' : '';
@@ -815,7 +815,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$storageNo  = str_enhtml($this->input->get_post('storageNo',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0';
+		$where = 'a.isDelete=0 and a.parent='.$this->parent;
 		if ($catId > 0) {
 		    $catId = array_column($this->mysql_model->get_results('category','(1=1) and find_in_set('.$catId.',path)'),'id');
 			if (count($catId)>0) {
@@ -901,7 +901,7 @@ class Report extends CI_Controller {
 		$storageNo  = str_enhtml($this->input->get_post('storageNo',TRUE));
 		$data['beginDate'] = $beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']   = $endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0';
+		$where = 'a.isDelete=0 and a.parent='.$this->parent;
 		if ($catId > 0) {
 		    $catId = array_column($this->mysql_model->get_results('category','(1=1) and find_in_set('.$catId.',path)'),'id');
 			if (count($catId)>0) {
@@ -944,9 +944,9 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 =  'a.isDelete=0';
+		$where1 =  'a.isDelete=0 and a.parent='.$this->parent;
 		$where1 .=  $goodsNo ? ' and a.number in('.str_quote($goodsNo).')' : '';
-		$where2 = 'a.isDelete=0 and a.transType>0';
+		$where2 = 'a.isDelete=0 and a.transType>0 and a.parent='.$this->parent;
 		$where2 .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where2 .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
 		$where2 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
@@ -1053,7 +1053,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate'] = $beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']   = $endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 =  'a.isDelete=0';
+		$where1 =  'a.isDelete=0 and a.parent='.$this->parent;
 		$where1 .=  $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
 		$where2 = 'a.isDelete=0 and a.transType>0';
 		$where2 .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
@@ -1088,7 +1088,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where  = 'a.isDelete=0';
+		$where  = 'a.isDelete=0 and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
 		$where .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
@@ -1187,7 +1187,7 @@ class Report extends CI_Controller {
 		$goodsNo    = str_enhtml($this->input->get_post('goodsNo',TRUE));
 		$data['beginDate'] = $beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']   = $endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where  = 'a.isDelete=0';
+		$where  = 'a.isDelete=0 and a.parent='.$this->parent;
 		$where .= $storageNo ? ' and d.locationNo in('.str_quote($storageNo).')' : '';
 		$where .= $goodsNo ? ' and b.number in('.str_quote($goodsNo).')' : '';
 		$where .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
@@ -1217,7 +1217,7 @@ class Report extends CI_Controller {
 		$accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = 'a.isDelete=0';
+		$where1 = 'a.isDelete=0 and a.parent='.$this->parent;
 		$where1 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where1 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where1 .= $accountNo ? ' and d.number in('.str_quote($accountNo).')' : '';
@@ -1301,7 +1301,7 @@ class Report extends CI_Controller {
 	    $data['accountNo']  = $accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$data['beginDate']  = $beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = 'a.isDelete=0';
+		$where1 = 'a.isDelete=0 and a.parent='.$this->parent;
 		$where1 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where1 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where1 .= $accountNo ? ' and d.number in('.str_quote($accountNo).')' : '';
@@ -1332,11 +1332,11 @@ class Report extends CI_Controller {
 		$accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = ' and (billType="PUR" or billType="PAYMENT")';
-		$where2 = 'a.isDelete=0 and a.type=10';
-		$where2 .= $accountNo ? ' and a.number="'.$accountNo.'"' : '';
+		$where1 = ' and (billType="PUR" or billType="PAYMENT") and a.parent='.$this->parent;
+		$where2 = 'a.isDelete=0 and a.type=10 and a.parent='.$this->parent;
+		$where2 .= $accountNo ? ' and a.number="'.$accountNo.'"' : ' and a.parent='.$this->parent;
 		$list1 = $this->data_model->get_contact('and billDate<"'.$beginDate.'" '.$where1 ,$where2.' order by a.id');
-		$where3 = 'a.isDelete=0 and (a.billType="PUR" or a.billType="PAYMENT")';
+		$where3 = 'a.isDelete=0 and (a.billType="PUR" or a.billType="PAYMENT") and a.parent='.$this->parent;
 		$where3 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where3 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where3 .= ' and (a.billType="PUR" or a.billType="PAYMENT")';
@@ -1434,11 +1434,11 @@ class Report extends CI_Controller {
 		$accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$data['beginDate']  = $beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = ' and (billType="PUR" or billType="PAYMENT")';
-		$where2 = 'a.isDelete=0 and a.type=10';
+		$where1 = ' and (billType="PUR" or billType="PAYMENT") and a.parent='.$this->parent;
+		$where2 = 'a.isDelete=0 and a.type=10 and a.parent='.$this->parent;
 		$where2 .= $accountNo ? ' and a.number="'.$accountNo.'"' : '';
 		$data['list1'] = $this->data_model->get_contact('and billDate<"'.$beginDate.'" '.$where1 ,$where2.' order by a.id');
-		$where3 = 'a.isDelete=0 and (a.billType="PUR" or a.billType="PAYMENT")';
+		$where3 = 'a.isDelete=0 and (a.billType="PUR" or a.billType="PAYMENT") and a.parent='.$this->parent;
 		$where3 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where3 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where3 .= ' and (a.billType="PUR" or a.billType="PAYMENT")';
@@ -1471,11 +1471,11 @@ class Report extends CI_Controller {
 		$accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = 'and (billType="SALE" or billType="RECEIPT") and billDate<"'.$beginDate.'"';
-		$where2 = 'a.isDelete=0 and (a.type=-10)';
+		$where1 = 'and (billType="SALE" or billType="RECEIPT") and billDate<"'.$beginDate.'" and a.parent='.$this->parent;
+		$where2 = 'a.isDelete=0 and (a.type=-10) and a.parent='.$this->parent;
 		$where2 .= $accountNo ? ' and a.number="'.$accountNo.'"' : '';
 		$list1 = $this->data_model->get_contact($where1 ,$where2.' order by a.id');
-		$where3 = 'a.isDelete=0  and (a.billType="SALE" or a.billType="RECEIPT")';
+		$where3 = 'a.isDelete=0  and (a.billType="SALE" or a.billType="RECEIPT") and a.parent='.$this->parent;
 		$where3 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where3 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where3 .= $this->common_model->get_admin_purview();
@@ -1570,11 +1570,11 @@ class Report extends CI_Controller {
 		$accountNo   = str_enhtml($this->input->get_post('accountNo',TRUE));
 		$data['beginDate']  = $beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where1 = 'and (billType="SALE" or billType="RECEIPT") and billDate<"'.$beginDate.'"';
-		$where2 = 'a.isDelete=0 and (a.type=-10)';
+		$where1 = 'and (billType="SALE" or billType="RECEIPT") and billDate<"'.$beginDate.'" and a.parent='.$this->parent;
+		$where2 = 'a.isDelete=0 and (a.type=-10) and a.parent='.$this->parent;
 		$where2 .= $accountNo ? ' and a.number="'.$accountNo.'"' : '';
 		$data['list1'] = $this->data_model->get_contact($where1 ,$where2.' order by a.id');
-		$where3 = 'a.isDelete=0  and (a.billType="SALE" or a.billType="RECEIPT")';
+		$where3 = 'a.isDelete=0  and (a.billType="SALE" or a.billType="RECEIPT") and a.parent='.$this->parent;
 		$where3 .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where3 .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
 		$where3 .= $this->common_model->get_admin_purview();
@@ -1607,7 +1607,7 @@ class Report extends CI_Controller {
 		$beginDate    = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate      = str_enhtml($this->input->get_post('endDate',TRUE));
 		$list1 = $this->data_model->get_contact('and billDate<"'.$beginDate.'" and buId='.$customerId,'a.isDelete=0 and a.id="'.$customerId.'"',1);
-		$where = 'a.isDelete=0 and (a.billType="SALE" or a.billType="RECEIPT")';
+		$where = 'a.isDelete=0 and (a.billType="SALE" or a.billType="RECEIPT") and a.parent='.$this->parent;
 		$where .= ' and a.buId='.$customerId;
 		$where .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
@@ -1725,7 +1725,7 @@ class Report extends CI_Controller {
 		$data['beginDate']  = $beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
 		$data['list1'] = $this->data_model->get_contact('and billDate<"'.$beginDate.'" and buId='.$customerId,'a.isDelete=0 and a.id="'.$customerId.'"',1);
-		$where = 'a.isDelete=0';
+		$where = 'a.isDelete=0 and a.parent='.$this->parent;
 		$where .= ' and a.buId='.$customerId;
 		$where .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
 		$where .= $endDate ? ' and a.billDate<="'.$endDate.'"' : '';
@@ -1756,7 +1756,7 @@ class Report extends CI_Controller {
 		$beginDate    = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate      = str_enhtml($this->input->get_post('endDate',TRUE));
 		$list1 = $this->data_model->get_contact('and billDate<"'.$beginDate.'" and buId='.$supplierId,'a.isDelete=0 and a.id="'.$supplierId.'"',1);
-		$where = 'isDelete=0 and (billType="PUR" or billType="PAYMENT")';
+		$where = 'isDelete=0 and (billType="PUR" or billType="PAYMENT") and a.parent='.$this->parent;
 		$where .= ' and buId='.$supplierId;
 		$where .= $beginDate ? ' and billDate>="'.$beginDate.'"' : '';
 		$where .= $endDate ? ' and billDate<="'.$endDate.'"' : '';
@@ -1875,7 +1875,7 @@ class Report extends CI_Controller {
 		$data['beginDate']  = $beginDate   = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = $endDate     = str_enhtml($this->input->get_post('endDate',TRUE));
 		$data['list1'] = $this->data_model->get_contact('and billDate<"'.$beginDate.'" and (billType="PUR" or billType="PAYMENT") and buId='.$supplierId,'a.isDelete=0 and a.id="'.$supplierId.'"',1);
-		$where = 'isDelete=0';
+		$where = 'isDelete=0 and a.parent='.$this->parent;
 		$where .= ' and buId='.$supplierId;
 		$where .= $beginDate ? ' and billDate>="'.$beginDate.'"' : '';
 		$where .= $endDate ? ' and billDate<="'.$endDate.'"' : '';
@@ -1904,7 +1904,7 @@ class Report extends CI_Controller {
 	    $typeName  = str_enhtml($this->input->get_post('typeName',TRUE));
 		$beginDate  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$endDate    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and (a.transType=153401 or a.transType=153402)';
+		$where = 'a.isDelete=0 and (a.transType=153401 or a.transType=153402) and a.parent='.$this->parent;
 		$where .= $transType ? ' and a.transType='.$transType : '';
 		$where .= $typeName  ? ' and c.name="'.$typeName.'"' : '';
 		$where .= $beginDate ? ' and a.billDate>="'.$beginDate.'"' : '';
@@ -1959,7 +1959,7 @@ class Report extends CI_Controller {
 	    $data['typeName']   = str_enhtml($this->input->get_post('typeName',TRUE));
 		$data['beginDate']  = str_enhtml($this->input->get_post('beginDate',TRUE));
 		$data['endDate']    = str_enhtml($this->input->get_post('endDate',TRUE));
-		$where = 'a.isDelete=0 and (a.transType=153401 or a.transType=153402)';
+		$where = 'a.isDelete=0 and (a.transType=153401 or a.transType=153402) and a.parent='.$this->parent;
 		$where .= $data['transType'] ? ' and a.transType='.$data['transType'] : '';
 		$where .= $data['typeName']  ? ' and c.name="'.$data['typeName'].'"' : '';
 		$where .= $data['beginDate'] ? ' and a.billDate>="'.$data['beginDate'].'"' : '';

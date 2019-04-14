@@ -6,7 +6,7 @@ class Dataright extends CI_Controller {
         parent::__construct();
 		$this->common_model->checkpurview(82);
     }
-	
+
 	public function ar() {
 		$data = $this->input->post(NULL,TRUE);
 		if (count($data)>0) {
@@ -20,7 +20,7 @@ class Dataright extends CI_Controller {
 		}
 		str_alert(-1,'更新失败');
 	}
-     
+
 	public function dt() {
 	    $ids = str_enhtml($this->input->post('userName',TRUE));
 		die('{"status":200,"data":{"items":[
@@ -28,9 +28,9 @@ class Dataright extends CI_Controller {
 		{"FNAME":"客户","FRIGHT":"2","FRIGHTID":"2","FNUMBER":"customer"},
 		{"FNAME":"供应商","FRIGHT":"4","FRIGHTID":"4","FNUMBER":"supplier"},
 		{"FNAME":"制单人","FRIGHT":"8","FRIGHTID":"8","FNUMBER":"user"}
-		],"totalsize":4},"msg":"success"}');	
+		],"totalsize":4},"msg":"success"}');
 	}
-	
+
 	public function update() {
 	    $this->common_model->checkpurview();
 		$type     = max(intval($this->input->get('type',TRUE)),1);
@@ -58,74 +58,74 @@ class Dataright extends CI_Controller {
 
 		}
 		str_alert(-1,'更新失败');
-	} 
-	
-	 
+	}
+
+
 	public function query() {
 	    $v = array();
 	    $type      = max(intval($this->input->get_post('type',TRUE)),0);
 		$skey      = str_enhtml($this->input->get_post('skey',TRUE));
 		$userName  = str_enhtml($this->input->get_post('userName',TRUE));
-		$data = $this->mysql_model->get_rows('admin',array('username'=>$userName)); 
+		$data = $this->mysql_model->get_rows('admin',array('username'=>$userName));
 		if (count($data)>0) {
 			switch ($type) {
 				case 1:
 				    $righttype = explode(',',$data['righttype'.$type]);
 					$where = $skey ? ' and (locationNo like "%'.$skey.'%" or name like "%'.$skey.'%")' : '';
-					$list = $this->mysql_model->get_results('storage','(isDelete=0) '.$where,'id desc'); 
+					$list = $this->mysql_model->get_results('storage','(isDelete=0) '.$where,'id desc');
 					foreach ($list as $arr=>$row) {
 						$v[$arr]['FITEMID']     = intval($row['id']);
 						$v[$arr]['FNAME']       = $row['name'];
 						$v[$arr]['FITEMNO']     = $row['locationNo'];
 						$v[$arr]['FRIGHT']      = in_array($row['id'],$righttype)==1 ? 1 : 0;
 					}
-					break;  
+					break;
 				case 2:
 				    $righttype = explode(',',$data['righttype'.$type]);
 					$where = $skey ? ' and (number like "%'.$skey.'%" or name like "%'.$skey.'%")' : '';
-					$list = $this->mysql_model->get_results('contact','(isDelete=0) and type=-10 '.$where,'id desc'); 
+					$list = $this->mysql_model->get_results('contact','(isDelete=0) and type=-10 '.$where,'id desc');
 					foreach ($list as $arr=>$row) {
 						$v[$arr]['FITEMID']     = intval($row['id']);
 						$v[$arr]['FNAME']       = $row['name'];
 						$v[$arr]['FITEMNO']     = $row['number'];
 						$v[$arr]['FRIGHT']      = in_array($row['id'],$righttype)==1 ? 1 : 0;
 					}
-					break;  	
+					break;
 				case 4:
 				    $righttype = explode(',',$data['righttype'.$type]);
 					$where = $skey ? ' and (number like "%'.$skey.'%" or name like "%'.$skey.'%")' : '';
-					$list = $this->mysql_model->get_results('contact','(isDelete=0) and type=10 '.$where,'id desc');  
+					$list = $this->mysql_model->get_results('contact','(isDelete=0) and type=10 '.$where,'id desc');
 					foreach ($list as $arr=>$row) {
 						$v[$arr]['FITEMID']     = intval($row['id']);
 						$v[$arr]['FNAME']       = $row['name'];
 						$v[$arr]['FITEMNO']     = $row['number'];
 						$v[$arr]['FRIGHT']      = in_array($row['id'],$righttype)==1 ? 1 : 0;
 					}
-					break; 
+					break;
 				case 8:
 				    $righttype = explode(',',$data['righttype'.$type]);
 					$where = $skey ? ' and (username like "%'.$skey.'%" or name like "%'.$skey.'%")' : '';
-					$list = $this->mysql_model->get_results('admin','(1=1) '.$where,'uid desc');  
+					$list = $this->mysql_model->get_results('admin','(1=1) '.$where,'uid desc');
 					foreach ($list as $arr=>$row) {
 						$v[$arr]['FITEMID']     = intval($row['uid']);
 						$v[$arr]['FNAME']       = $row['username'];
 						$v[$arr]['FITEMNO']     = intval($row['uid']);
 						$v[$arr]['FRIGHT']      = in_array($row['uid'],$righttype)==1 ? 1 : 0;
 					}
-					break; 	
-				default:     	
+					break;
+				default:
 			}
 		}
 		$data['status'] = 200;
-		$data['msg']    = 'success'; 
+		$data['msg']    = 'success';
 		$data['data']['rows']       = $v;
 		$data['data']['total']      = 1;
 		$data['data']['records']    = count($v);
 		$data['data']['page']       = 1;
 		die(json_encode($data));
 	}
- 
-	 
+
+
 }
 
 /* End of file welcome.php */

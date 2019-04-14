@@ -92,7 +92,7 @@ class Contact extends CI_Controller {
 	public function getRecentlyContact(){
 		$billType  = str_enhtml($this->input->post('billType',TRUE));
 		$transType = intval($this->input->post('transType',TRUE));
-		$where = '(isDelete=0)';
+		$where = '(isDelete=0) and parent='.$this->parent;
 		$where .= $transType==150501 ? ' and type=10' :' and type=-10';
 		$where .= $this->common_model->get_contact_purview();
 	    $data = $this->mysql_model->get_rows('contact',$where);
@@ -108,7 +108,7 @@ class Contact extends CI_Controller {
 	public function query() {
     $id   = intval($this->input->get_post('id',TRUE));
 		$type = intval($this->input->get_post('type',TRUE));
-		$data = $this->mysql_model->get_rows('contact',array('isDelete'=>0,'id'=>$id));
+		$data = $this->mysql_model->get_rows('contact',array('isDelete'=>0,'id'=>$id,'parent'=>$this->parent));
 		if (count($data)>0) {
 			$info['id']           = $id;
 			$info['cCategory']    = intval($data['cCategory']);

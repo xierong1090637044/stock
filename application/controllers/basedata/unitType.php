@@ -1,15 +1,20 @@
-<?php 
+<?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Unittype extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-		$this->common_model->checkpurview();
+        $this->common_model->checkpurview();
+        $this->parent = $this->input->cookie("parent");//创建者
+
+        $time=time();//获取系统时间
+        preg_match('/\d{10}/',$time,$matches);
+        $this->newTime =  date('Y-m-d H:i:s',$matches[0]);//当前服务器时间
     }
-	
+
 	public function index() {
-		$list = $this->mysql_model->get_results('unittype',array('isDelete'=>0),'id desc');  
+		$list = $this->mysql_model->get_results('unittype',array('isDelete'=>0,'parent'=>$this->parent),'id desc');
 		foreach ($list as $arr=>$row) {
 		    $v[$arr]['entries']     = array();
 			$v[$arr]['guid']        = '';
@@ -17,16 +22,18 @@ class Unittype extends CI_Controller {
 			$v[$arr]['name']        = $row['name'];
 		}
 		$json['status'] = 200;
-		$json['msg']    = 'success'; 
+		$json['msg']    = 'success';
 		$json['data']['items']      = isset($v) ? $v : array();
 		$json['data']['totalsize']  = count($list);
-		die(json_encode($json));  
+		die(json_encode($json));
 	}
-	
+
 	//新增
 	public function add() {
 		$this->common_model->checkpurview(59);
 		$data['name'] = $name = $this->input->post('name',TRUE);
+    $data['parent'] = $this->parent;
+    $data['created'] = $this->newTime;
 		strlen($name) < 1 && str_alert(-1,'名称不能为空');
 		$this->mysql_model->get_count('unittype',array('name'=>$name)) && str_alert(-1,'单位组名称重复');
 		$sql = $this->mysql_model->insert('unittype',$data);
@@ -37,13 +44,13 @@ class Unittype extends CI_Controller {
 		}
 		str_alert(-1,'添加失败');
 	}
-	
+
 	//修改
 	public function update(){
 		$this->common_model->checkpurview(59);
 		$id   = intval($this->input->post('id',TRUE));
 		$name = str_enhtml($this->input->post('name',TRUE));
-		$info = $this->mysql_model->get_rows('unittype','(id='.$id.') and (isDelete=0)'); 
+		$info = $this->mysql_model->get_rows('unittype','(id='.$id.') and (isDelete=0)');
 		if (count($info)>0) {
 			strlen($name) < 1 && str_alert(-1,'名称不能为空');
 			$this->mysql_model->get_count('unittype',array('isDelete'=>$isDelete,'name'=>$name,'id !='=>$id)) > 0 && str_alert(-1,'单位组名称重复');
@@ -59,15 +66,15 @@ class Unittype extends CI_Controller {
 		}
 		str_alert(-1,'更新失败');
 	}
-	
+
 	//删除
 	public function delete(){
 		$this->common_model->checkpurview(59);
 		$id = intval($this->input->post('id',TRUE));
-		$data = $this->mysql_model->get_rows('unittype',array('isDelete'=>$isDelete,'id'=>$id)); 
+		$data = $this->mysql_model->get_rows('unittype',array('isDelete'=>$isDelete,'id'=>$id));
 		if (count($data)>0) {
 		    $this->mysql_model->get_count('unit',array('isDelete'=>$isDelete,'unittypeid'=>$id))>0 && str_alert(-1,'发生业务不可删除');
-			$sql = $this->mysql_model->update('unittype',array('isDelete'=>1),array('id'=>$id));         
+			$sql = $this->mysql_model->update('unittype',array('isDelete'=>1),array('id'=>$id));
 		    if ($sql) {
 				$this->common_model->logs('删除单位组:ID='.$id.' 名称:'.$data['name']);
 				str_alert(200,'success',array('msg'=>'成功删除','id'=>'['.$id.']'));
