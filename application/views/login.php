@@ -2,50 +2,51 @@
 if(!defined('BASEPATH')) exit('No direct script access allowed');
 ?>
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>进销存</title>
-		    <meta charset="utf-8">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
-        <meta name="globalsign-domain-verification" content="wnLJy1jTEsQbKd3ZepUI9lK4R1lnQif9O4mKSlu1rX" />
-        <meta name="viewport" content='width=device-width,initial-scale=0.4; maximum-scale=3.0;minimum-scale:0.5;user-scalable=yes;'  />
-        <link href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Css/common.css?2" rel="stylesheet" />
-        <link href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Css/global.css?2" rel="stylesheet" />
-        <link rel="shortcut icon" href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/bitbug_favicon.ico" type="image/x-icon"/>
-        <link rel="apple-touch-icon" href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/WebIcon/apple-touch-icon-57.png" />
-        <link rel="apple-touch-icon" sizes="72x72"  href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/WebIcon/apple-touch-icon-72.png" />
-        <link rel="apple-touch-icon" sizes="114x114" href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/WebIcon/apple-touch-icon-114.png"  />
-        <link rel="apple-touch-icon" sizes="144x144" href="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/WebIcon/apple-touch-icon-144.png"  />
-        <script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/jquery-1.7.1.js"></script>
-        <script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/common.js"></script>
-        <script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/minicheck.js"></script>
-
+<html lang="zh-CN">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>登陆丨进销云</title>
+<link rel="stylesheet" href="../statics/test/css/style.css">
+<script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/jquery-1.7.1.js"></script>
+<script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/common.js"></script>
+<script src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Scripts/minijs/minicheck.js"></script>
+<script src="../statics/test/js/common.js"></script>
+<!--背景图片自动更换-->
+<script src="../statics/test/js/supersized.3.2.7.min.js"></script>
+<!--表单验证-->
+<script src="../statics/test/js/jquery.validate.min.js?var1.14.0"></script>
 <body id="body">
-    <div class="connext">
-    <form action="" onSubmit="return Login()">
-        <div class="LoginBox">
-            <div class="LoginLog"></div>
-            <div class="Loginc">
-                <div class="loginInputc">
-                    <input type="text" class="logininput" value="<?php echo get_cookie('username')?>" id="username" placeholder="输入域账号" />
-                </div>
-                <div class="loginInputc">
-                    <input type="password" class="logininput" id="password" value="<?php echo get_cookie('userpwd')?>" placeholder="输入域密码" />
-                </div>
-            </div>
-            <div style="color:red; font-size:20px; margin-top:12px; line-height:20px; display:none;" id="loginerror"></div>
-            <div class="checkMMBox">
-                <span class="checkbox<?php echo get_cookie('ispwd')==1?'true':'false'?>" id="Checked" onClick="ChechBoxAction(this)" val="<?php echo get_cookie('ispwd')?>">记住账号</span>
-            </div>
 
-            <div class="LoginBtn"><input type="button" class="loginBtn" id="btnLogin" onClick="Login()" /></div>
-        </div>
-    </form>
+<div class="login-container">
+	<h1>进销云</h1>
+
+	<div class="connect">
+		<p>宁愿跑起来被拌倒无数次，也不愿规规矩矩走一辈子，就算跌倒，也要豪迈的笑</p>
+	</div>
+
+	<form onSubmit="return Login()" method="post" id="loginForm">
+    <div style="color:red; font-size:20px; margin-top:12px; line-height:20px; display:none;" id="loginerror"></div>
+		<div>
+			<input type="text" class="logininput" value="<?php echo get_cookie('username')?>" id="username" placeholder="输入账号" />
+		</div>
+		<div>
+			<input type="password" class="logininput" id="password" value="<?php echo get_cookie('userpwd')?>" placeholder="输入密码" />
+		</div>
+		<button id="submit" type="submit">登 陆</button>
+	</form>
+
+	<a href="<?php echo site_url('login/test')?>">
+		<button type="button" class="register-tis">还有没有账号？</button>
+	</a>
+
 </div>
+
 <!--需要loading 的页面就在页面最下方加-->
 <div class="loading">
 	<img src="<?php echo base_url()?>statics/login/<?php echo sys_skin()?>/Images/loading.gif" style="position:absolute;top:50%;left:50%;margin:-82px 0 0 -135px;" alt="请稍后...">
 </div>
+
+</body>
 <script type="text/javascript">
     //加载公用的js最后面
     $(window).load(function(){
@@ -119,7 +120,38 @@ if(!defined('BASEPATH')) exit('No direct script access allowed');
             }
         };
     });
+
+    //图片轮播
+    jQuery(function($){
+
+        $.supersized({
+
+            // 功能
+            slide_interval     : 4000,    // 转换之间的长度
+            transition         : 1,    // 0 - 无，1 - 淡入淡出，2 - 滑动顶，3 - 滑动向右，4 - 滑底，5 - 滑块向左，6 - 旋转木马右键，7 - 左旋转木马
+            transition_speed   : 1000,    // 转型速度
+            performance        : 1,    // 0 - 正常，1 - 混合速度/质量，2 - 更优的图像质量，三优的转换速度//（仅适用于火狐/ IE浏览器，而不是Webkit的）
+
+            // 大小和位置
+            min_width          : 0,    // 最小允许宽度（以像素为单位）
+            min_height         : 0,    // 最小允许高度（以像素为单位）
+            vertical_center    : 1,    // 垂直居中背景
+            horizontal_center  : 1,    // 水平中心的背景
+            fit_always         : 0,    // 图像绝不会超过浏览器的宽度或高度（忽略分钟。尺寸）
+            fit_portrait       : 1,    // 纵向图像将不超过浏览器高度
+            fit_landscape      : 0,    // 景观的图像将不超过宽度的浏览器
+
+            // 组件
+            slide_links        : 'blank',    // 个别环节为每张幻灯片（选项：假的，'民'，'名'，'空'）
+            slides             : [    // 幻灯片影像
+                                     {image : '../statics/test/images/1.jpg'},
+                                     {image : '../statics/test/images/2.jpg'},
+                                     {image : '../statics/test/images/3.jpg'}
+                           ]
+
+        });
+
+    });
 </script>
 
-</body>
 </html>
