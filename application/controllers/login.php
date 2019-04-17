@@ -35,7 +35,6 @@ class Login extends CI_Controller {
 					$this->input->set_cookie('ispwd',$data['ispwd'],3600000);
           $this->input->set_cookie('uid',$user['uid'],3600000);
 					$this->session->set_userdata($data);
-					$this->common_model->logs('登陆成功 用户名：'.$data['username']);
 					die('1');
 			   }
 			}
@@ -82,7 +81,6 @@ class Login extends CI_Controller {
         $this->input->set_cookie('username',$user['username'],3600000);
         $list  = $this->mysql_model->get_results('admin',array('username'=>$data['username'],'userpwd'=>md5($data['userpwd'])));
         $sql = $this->mysql_model->update('admin',array('parent'=>$list[0]["uid"]),array('uid'=>$list[0]["uid"]));
-        $this->common_model->logs('登陆成功 用户名：'.$data['username']);
 				die('1');
 			}
   } else {

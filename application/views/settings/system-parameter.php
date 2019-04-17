@@ -54,7 +54,7 @@ $(document).keydown(function(event) {
     <div class="para-item">
       <h3>基础参数</h3>
       <ul class="mod-form-rows" id="establish-form">
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="companyName">公司名称：</label>
           </div>
@@ -62,7 +62,7 @@ $(document).keydown(function(event) {
             <input type="text" name="companyName" class="ui-input" id="companyName" />
           </div>
         </li>
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="companyAddress">公司地址：</label>
           </div>
@@ -70,7 +70,7 @@ $(document).keydown(function(event) {
             <input type="text" name="companyAddress" class="ui-input" id="companyAddress" />
           </div>
         </li>
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="companyTel">公司电话：</label>
           </div>
@@ -78,7 +78,7 @@ $(document).keydown(function(event) {
             <input type="text" name="companyTel" class="ui-input" id="companyTel" />
           </div>
         </li>
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="companyFax">公司传真：</label>
           </div>
@@ -86,7 +86,7 @@ $(document).keydown(function(event) {
             <input type="text" name="companyFax" class="ui-input" id="companyFax" />
           </div>
         </li>
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="postcode">公司邮编：</label>
           </div>
@@ -94,7 +94,7 @@ $(document).keydown(function(event) {
             <input type="text" name="postcode" class="ui-input" id="postcode" />
           </div>
         </li>
-        <li class="row-item">
+        <li class="row-item" style="display:none">
           <div class="label-wrap">
             <label for="startDate">启用时间：</label>
           </div>
@@ -111,7 +111,7 @@ $(document).keydown(function(event) {
             <input type="text" class="ui-input ui-input-dis" id="currency" disabled="disabled"/>
             <!--<select id="currency-sel" name="currency-sel">
 							<option value="RMB">RMB</option>
-						</select>--> 
+						</select>-->
           </div>
         </li>
         <li class="row-item">
@@ -156,14 +156,14 @@ $(document).keydown(function(event) {
         </li>
       </ul>
     </div>
-    
+
     <div class="para-item dn">
       <h3>功能参数</h3>
       <ul class="mod-form-rows" id="establish-form2">
-        
+
       </ul>
     </div>
-    
+
     <div class="btn-wrap"> <a id="save" class="ui-btn ui-btn-sp">保存</a> </div>
   </div>
 </div>

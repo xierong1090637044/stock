@@ -501,16 +501,16 @@ var _hmt = _hmt || [];
       <ul class="user-menu">
       	<!--<li class="qq"><a href="" target="_blank" id="mobile" title="手机版">手机版</a></li>
       	<li class="space">|</li>-->
-      	<li class="qq"><a href="" onClick="return false;" id="wpa">QQ咨询：1289655891</a></li>
+      	<li class="qq"><a href="" onClick="return false;" id="wpa">QQ咨询：1090637044</a></li>
       	<li class="space">|</li>
 
-      	<li class="telphone">电话：400-600-7727</li>
+      	<li class="telphone">电话：17621119443</li>
         <li class="space">|</li>
       	<li id="sysSkin">换肤</li>
         <li class="space">|</li>
 
-      	<li><a class="service-tab" data-tab="3">授权查询</a></li>
-		<li class="space">|</li>
+      	<!--<li><a class="service-tab" data-tab="3">授权查询</a></li>
+				<li class="space">|</li>-->
         <!--
         <li><a href="javascript:void(0);" onClick="window.location.href='';return false;">返回助手</a></li>-->
         <!--<li class="space">|</li>-->
