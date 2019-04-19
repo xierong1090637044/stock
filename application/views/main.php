@@ -20,9 +20,9 @@ try{
 	  <a href="javascrip:void(0);" id="manageAcct">账号管理</a>
 	  <!--<a href="" target="_blank" id="newGuide" title="新手入门">新手入门</a>-->
   </div>
-  
-  
-  
+
+
+
   <div class="fr storages-search"><label><a class="b" id="invWarning">库存预警</a></label><label for="">库存查询</label><span class="ui-search"><input type="text" id="goodsAuto" class="ui-input" /></span><span id="stockSearch"></span></div>
 </div>
 <script>
@@ -45,7 +45,7 @@ $("#username").text(parent.SYSTEM.realName);
   <div class="col-main">
     <div class="main-wrap cf">
       <div class="m-top cf" id="profileDom">
-      <!-- 
+      <!--
       	<div class="fr" id="interval">
           	<label class="radio"><input type="radio" name="interval" value="month" checked="checked">本月</label>
           	<label class="radio"><input type="radio" name="interval" value="year">本年</label>
@@ -59,7 +59,7 @@ $("#username").text(parent.SYSTEM.realName);
 		    <td><a class="ta t2" tabid="report-cashBankJournal" data-right="SettAcctReport_QUERY" tabTxt="现金银行报表" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/bankBalance_detail?action=detail')?>">现金银行报表</a></td>
 		    <td><a class="ta t3" tabid="report-contactDebt" data-right="ContactDebtReport_QUERY" tabTxt="往来单位欠款表" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/contact_debt_new?action=detail')?>">往来单位欠款表</a></td>
 		    <td><a class="ta t4" tabid="report-salesSummary" data-right="SAREPORTINV_QUERY" tabTxt="销售汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/sales_summary')?>">销售汇总表</a></td>
-		    <td><a class="ta t5" tabid="report-puSummary" data-right="PUREPORTINV_QUERY" tabTxt="采购汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/puDetail_inv')?>">采购汇总表</a></td>  
+		    <td><a class="ta t5" tabid="report-puSummary" data-right="PUREPORTINV_QUERY" tabTxt="采购汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/puDetail_inv')?>">采购汇总表</a></td>
 		  </tr>
 		</table>
       </div>
@@ -83,11 +83,10 @@ $("#username").text(parent.SYSTEM.realName);
         	<a tabid="storage-otherOutbound" data-right="OO_ADD" tabTxt="其他出库" parentOpen="true" rel="pageTab" href="<?php echo site_url('scm/invOi?action=initOi&type=out')?>"><span></span>其他出库</a>
         </li>
         <li class="added-service">
-        	<!--<a tabid="setting-addedServiceList" tabTxt="增值服务" parentOpen="true" rel="pageTab" href="<?php echo site_url('settings/addedServiceList')?>"><span></span>增值服务</a>-->
-			<a href="#" id="feedback"><span></span>增值服务</a>
+					<a href="#" ><span></span>增值服务</a>
         </li>
         <li class="feedback">
-        	<a href="#" id="feedback"><span></span>意见反馈</a>
+        	<a href="#" ><span></span>意见反馈</a>
         </li>
       </ul>
     </div>
@@ -116,7 +115,7 @@ $("#username").text(parent.SYSTEM.realName);
         </ul>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 <script id="profile" type="text/html">
 		<table width="100%" border="0" cellspacing="0" cellpadding="20">
@@ -125,10 +124,10 @@ $("#username").text(parent.SYSTEM.realName);
 		    <td><a class="tad t2" tabid="report-cashBankJournal" data-right="SettAcctReport_QUERY" tabTxt="现金银行报表" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/cash_bank_journal_new')?>"><span>现金:<b><#= items[1].total1 #></b></span><span>银行存款:<b><#= items[1].total2 #></b></span></a></td>
 		    <td><a class="tad t3" tabid="report-contactDebt" data-right="ContactDebtReport_QUERY" tabTxt="往来单位欠款表" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/contact_debt_new')?>"><span>客户欠款:<b><#= items[2].total1 #></b></span><span>供应商欠款:<b><#= items[2].total2 #></b></span></a></td>
 		    <td><a class="tad t4" tabid="report-salesSummary" data-right="SAREPORTINV_QUERY" tabTxt="销售汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/sales_summary')?>"><span>销售收入(本月):<b><#= items[3].total1 #></b></span><span>商品毛利(本月):<b><#= items[3].total2 #></b></span></a></td>
-		    <td><a class="tad t5" tabid="report-puSummary" data-right="PUREPORTINV_QUERY" tabTxt="采购汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/pu_summary_new')?>"><span>采购金额(本月):<b><#= items[4].total1 #></b></span><span>商品种类(本月):<b><#= items[4].total2 #></b></span></a></td>  
+		    <td><a class="tad t5" tabid="report-puSummary" data-right="PUREPORTINV_QUERY" tabTxt="采购汇总表（按商品）" parentOpen="true" rel="pageTab" href="<?php echo site_url('report/pu_summary_new')?>"><span>采购金额(本月):<b><#= items[4].total1 #></b></span><span>商品种类(本月):<b><#= items[4].total2 #></b></span></a></td>
 		  </tr>
 		</table>
-		<i></i>  
+		<i></i>
 </script>
 
 <script>
@@ -262,13 +261,13 @@ $('#manageAcct').click(function(e){
 		  version = '2';
 	};
 	var param = '?eventType=2&serviceId=' + SYSTEM.DBID;	//自带参数
-	$.getJSON("../home/Services?callback=?", {coid : SYSTEM.DBID, loginuserno: SYSTEM.UserName, version: version, type: 'getsystemmsg' + SYSTEM.servicePro}, function(data){ 
+	$.getJSON("../home/Services?callback=?", {coid : SYSTEM.DBID, loginuserno: SYSTEM.UserName, version: version, type: 'getsystemmsg' + SYSTEM.servicePro}, function(data){
 		if(data.msg == 'success'){
 			if(data.data.length == 0){
 				return;
 			}
-			var $notices = $('<span class="notices" id="notices"></span>'), 
-				html = [], 
+			var $notices = $('<span class="notices" id="notices"></span>'),
+				html = [],
 				notice,
 				li = '';
 			data = data.data;
