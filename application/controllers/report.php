@@ -7,14 +7,14 @@ class Report extends CI_Controller {
 		$this->common_model->checkpurview();
 		$this->jxcsys    = $this->session->userdata('jxcsys');
 		$this->systems   = $this->common_model->get_option('system');
-    $this->parent = $this->input->cookie("parent");//创建者
+		$this->parent = $this->input->cookie("parent");//创建者
     }
 
 	public function index() {
 	    $profit = $this->data_model->get_profit('and billDate<="'.date('Y-m-d').'"');
 
 		$inventory1  = $inventory2 = 0;
-		$list   = $this->data_model->get_invBalance('a.isDelete=0 and a.billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' group by a.invId,a.locationId');
+		$list   = $this->data_model->get_invBalance('a.isDelete=0 and a.billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' and a.parent='.$this->parent.' group by a.invId,a.locationId');
 		foreach ($list as $arr=>$row) {
 			$price = isset($profit['inprice'][$row['invId']][$row['locationId']]) ? $profit['inprice'][$row['invId']][$row['locationId']] : 0;
 			$inventory1 += $row['qty'];
@@ -24,7 +24,7 @@ class Report extends CI_Controller {
 		$inventory2 = round($inventory2,2);
 
 		$fund1 = $fund2 = 0;
-	    $list = $this->data_model->get_account($this->common_model->get_admin_purview(1),'a.isDelete=0');
+	    $list = $this->data_model->get_account($this->common_model->get_admin_purview(1),'a.isDelete=0 and a.parent='.$this->parent);
 		foreach ($list as $arr=>$row) {
 		    if ($row['type']==1) {
 			    $fund1 += $row['amount'];
@@ -36,7 +36,7 @@ class Report extends CI_Controller {
 		$fund2 = round($fund2,2);
 
 		$contact1 = $contact2 = 0;
-		$list = $this->data_model->get_contact($this->common_model->get_contact_purview(),'a.isDelete=0');
+		$list = $this->data_model->get_contact($this->common_model->get_contact_purview(),'a.isDelete=0 and a.parent='.$this->parent);
 		foreach ($list as $arr=>$row) {
 		    if ($row['type']==-10) {
 			    $contact1 += $row['amount'];
@@ -50,7 +50,7 @@ class Report extends CI_Controller {
 		$contact1 = round($contact1,2);
 		$contact2 = round($contact2,2);
 
-		$list = $this->data_model->get_invoice_infosum('a.isDelete=0 and a.billType="PUR" and billDate>="'.date('Y-m-1').'" and billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' group by a.invId,a.locationId');
+		$list = $this->data_model->get_invoice_infosum('a.isDelete=0 and a.billType="PUR" and billDate>="'.date('Y-m-1').'" and billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' and a.parent='.$this->parent.' group by a.invId,a.locationId');
 		$purchase1 = 0;
 		foreach ($list as $arr=>$row) {
 			$purchase1 += $row['sumamount'];
@@ -60,7 +60,7 @@ class Report extends CI_Controller {
 		$purchase2 = round($purchase2,$this->systems['qtyPlaces']);
 
 		$sales1 = $sales2 = 0;
-		$list   = $this->data_model->get_invoice_infosum('a.isDelete=0 and billType="SALE" and billDate>="'.date('Y-m-1').'" and billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' group by a.invId,a.locationId');
+		$list   = $this->data_model->get_invoice_infosum('a.isDelete=0 and billType="SALE" and billDate>="'.date('Y-m-1').'" and billDate<="'.date('Y-m-d').'" '.$this->common_model->get_location_purview().' and a.parent='.$this->parent.' group by a.invId,a.locationId');
 		foreach ($list as $arr=>$row) {
 		    $qty = $row['sumqty']>0 ? -abs($row['sumqty']):abs($row['sumqty']);
 			$amount = $row['sumamount'];
