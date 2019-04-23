@@ -42,7 +42,39 @@ class Login extends CI_Controller {
 		} else {
         $this->load->view('login',$data);
 		}
-	}
+  }
+  
+  public function wechatlogin(){
+    $data = str_enhtml($this->input->post(NULL,TRUE));
+		if (is_array($data)&&count($data)>0) {
+			//!token(1) && die('token验证失败');
+			strlen($data['username']) < 1 && json_encode(die([0,'用户名不能为空']));
+			strlen($data['userpwd']) < 1  && json_encode(die([0,'密码不能为空']));
+			$user = $this->mysql_model->get_rows('admin','(username="'.$data['username'].'") or (mobile="'.$data['username'].'") ');
+			if (count($user)>0) {
+			    $user['status']!=1 && json_encode(die([0,'账号被锁定']));
+				if ($user['userpwd'] == md5($data['userpwd'])) {
+					$data['jxcsys']['uid']      = $user['uid'];
+					$data['jxcsys']['name']     = $user['name'];
+					$data['jxcsys']['roleid']   = $user['roleid'];
+					$data['jxcsys']['username'] = $user['username'];
+					$data['jxcsys']['login']    = 'jxc';
+					if (isset($data['ispwd']) && $data['ispwd'] == 1) {
+					   $this->input->set_cookie('username',$data['username'],3600000);
+						$this->input->set_cookie('userpwd',$data['userpwd'],3600000);
+					}
+
+          if($user['roleid'] == 0)
+          {
+            die(json_encode([1,$user['uid']]));
+          }else {
+            die(json_encode([1,$user['parent']]));
+          }
+			   }
+      }
+      die(json_encode([0,'账号或密码错误']));
+		}
+  }
 
 	public function out(){
 	    $this->session->sess_destroy();
