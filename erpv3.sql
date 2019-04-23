@@ -109,6 +109,7 @@ CREATE TABLE `v3_admin` (
   `status` tinyint(1) DEFAULT '1' COMMENT '是否锁定',
   `name` varchar(25) COLLATE utf8_unicode_ci DEFAULT '',
   `mobile` varchar(20) COLLATE utf8_unicode_ci DEFAULT '',
+  `mail` text NOT NULL,
   `lever` text COLLATE utf8_unicode_ci COMMENT '权限',
   `roleid` tinyint(1) DEFAULT '1' COMMENT '角色ID',
   `righttype1` text COLLATE utf8_unicode_ci,
@@ -124,8 +125,8 @@ CREATE TABLE `v3_admin` (
 -- ----------------------------
 -- Records of v3_admin
 -- ----------------------------
-INSERT INTO `v3_admin` VALUES ('1330107239', 'admin', '7fef6171469e80d32c0559f88b377245', '1', '系统管理员', '17701030513', null, '0', null, null, null, null, '','1330107239','2017-08-31 08:00:00');
-INSERT INTO `v3_admin` VALUES ('1330107240', 'test1', 'e10adc3949ba59abbe56e057f20f883e', '1', '系统管理员2', '17701030513', null, '0', null, null, null, null, '','1330107240','2017-08-31 08:10:00');
+INSERT INTO `v3_admin` VALUES ('1330107239', 'admin', '7fef6171469e80d32c0559f88b377245', '1', '系统管理员', '17701030513','1090637044@qq.com',null, '0', null, null, null, null, '','1330107239','2017-08-31 08:00:00');
+INSERT INTO `v3_admin` VALUES ('1330107240', 'test1', 'e10adc3949ba59abbe56e057f20f883e', '1', '系统管理员2', '17701030513', '1090637044@qq.com',null, '0', null, null, null, null, '','1330107240','2017-08-31 08:10:00');
 
 -- ----------------------------
 -- Table structure for `v3_assistingprop`

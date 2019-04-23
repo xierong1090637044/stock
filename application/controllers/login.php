@@ -9,7 +9,7 @@ class Login extends CI_Controller {
 	public function index(){
 	    $data = str_enhtml($this->input->post(NULL,TRUE));
 		if (is_array($data)&&count($data)>0) {
-			!token(1) && die('token验证失败');
+			//!token(1) && die('token验证失败');
 			strlen($data['username']) < 1 && die('用户名不能为空');
 			strlen($data['userpwd']) < 1  && die('密码不能为空');
 			$user = $this->mysql_model->get_rows('admin','(username="'.$data['username'].'") or (mobile="'.$data['username'].'") ');
@@ -40,7 +40,7 @@ class Login extends CI_Controller {
 			}
 			die('账号或密码错误');
 		} else {
-		    $this->load->view('login',$data);
+        $this->load->view('login',$data);
 		}
 	}
 

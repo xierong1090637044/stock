@@ -64,8 +64,8 @@ var SYSTEM = {
 	rights: <?php echo $rights?>,          //权限列表
 	billRequiredCheck: 1, //是否启用单据审核功能  1：是、0：否
 	requiredCheckStore: <?php echo $system['requiredCheckStore']?>, //是否检查负库存  1：是、0：否
-	hasOnlineStore: 0,	//是否启用网店
-	enableStorage: 0,	//是否启用仓储
+	hasOnlineStore: 1,	//是否启用网店
+	enableStorage: 1,	//是否启用仓储
 	genvChBill: 0,	//生成凭证后是否允许修改单据
 	requiredMoney: 1, //是否启用资金功能  1：是、0：否
 	taxRequiredCheck: 0,
@@ -81,7 +81,7 @@ var SYSTEM = {
 	isOpen:false,//是否弹出手机验证
 	enableAssistingProp:0, //是否开启辅助属性功能  1：是、0：否
 	ISSERNUM: 0, //是否启用序列号 1：是、0：否 （与enableAssistingProp对立，只能启用其一）
-	ISWARRANTY: 0 //是否启用保质期  1：是、0：否
+	ISWARRANTY: 1 //是否启用保质期  1：是、0：否
 };
 //区分服务支持
 SYSTEM.servicePro = SYSTEM.siType === 2 ? 'forbscm3' : 'forscm3';
@@ -399,22 +399,9 @@ function getBatch(){
 		SYSTEM.batchInfo = [];
 	}
 }
-//左上侧版本标识控制
-function markupVension(){
-			var imgModel = $("<img id='icon-vension' src='' alt=''/>");
-			$('#col-side').prepend(imgModel);
-};
 
 </script>
-<!--<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?0613c265aa34b0ca0511eba4b45d2f5e";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>-->
+
 </head>
 <body>
 <div id="container" class="cf">
