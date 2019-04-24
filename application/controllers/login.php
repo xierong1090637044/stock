@@ -48,11 +48,11 @@ class Login extends CI_Controller {
     $data = str_enhtml($this->input->post(NULL,TRUE));
 		if (is_array($data)&&count($data)>0) {
 			//!token(1) && die('token验证失败');
-			strlen($data['username']) < 1 && json_encode(die([0,'用户名不能为空']));
-			strlen($data['userpwd']) < 1  && json_encode(die([0,'密码不能为空']));
+			strlen($data['username']) < 1 && die(json_encode([0,'用户名不能为空']));
+			strlen($data['userpwd']) < 1  && die(json_encode([0,'密码不能为空']));
 			$user = $this->mysql_model->get_rows('admin','(username="'.$data['username'].'") or (mobile="'.$data['username'].'") ');
 			if (count($user)>0) {
-			    $user['status']!=1 && json_encode(die([0,'账号被锁定']));
+			    $user['status']!=1 && die(json_encode([0,'账号被锁定']));
 				if ($user['userpwd'] == md5($data['userpwd'])) {
 					$data['jxcsys']['uid']      = $user['uid'];
 					$data['jxcsys']['name']     = $user['name'];
@@ -62,14 +62,10 @@ class Login extends CI_Controller {
 					if (isset($data['ispwd']) && $data['ispwd'] == 1) {
 					   $this->input->set_cookie('username',$data['username'],3600000);
 						$this->input->set_cookie('userpwd',$data['userpwd'],3600000);
-					}
-
-          if($user['roleid'] == 0)
-          {
-            die(json_encode([1,$user['uid']]));
-          }else {
-            die(json_encode([1,$user['parent']]));
           }
+          
+          die(json_encode([1,$user['uid'],$user['parent'],$user['roleid']]));
+
 			   }
       }
       die(json_encode([0,'账号或密码错误']));
@@ -96,7 +92,7 @@ class Login extends CI_Controller {
     strlen($data['mail']) < 1  && die('邮箱不能为空');
     $this->mysql_model->get_count('admin',array('username'=>$data['username']))>0 && str_alert(-1,'用户名已经存在');
     $this->mysql_model->get_count('admin',array('mobile'=>$data['mobile'])) >0 && str_alert(-1,'该手机号已被使用');
-    $this->mysql_model->get_count('admin',array('mobile'=>$data['main'])) >0 && str_alert(-1,'该邮箱已被使用');
+    $this->mysql_model->get_count('admin',array('mail'=>$data['main'])) >0 && str_alert(-1,'该邮箱已被使用');
     $info = array(
        'username' => $data['username'],
        'userpwd'  => md5($data['userpwd']),
