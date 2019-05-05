@@ -14,6 +14,13 @@ class Inventory extends CI_Controller {
 
     //商品列表
 	public function index() {
+		$data = str_enhtml($this->input->post(NULL,TRUE));
+		if($data["type"]=="wechat") {
+			$this->parent = $data["parent"];
+		}else{
+			$this->parent = $this->input->cookie("parent");//创建者
+		}
+
 		$page = max(intval($this->input->get_post('page',TRUE)),1);
 		$rows = max(intval($this->input->get_post('rows',TRUE)),100);
 		$skey = str_enhtml($this->input->get_post('skey',TRUE));
@@ -34,7 +41,7 @@ class Inventory extends CI_Controller {
 		    $v[$arr]['amount']        = (float)$row['iniamount'];
 			$v[$arr]['barCode']       = $row['barCode'];
 			$v[$arr]['categoryName']  = $row['categoryName'];
-			$v[$arr]['currentQty']    = $row['totalqty'];                            //当前库存
+			$v[$arr]['currentQty']    = ($row['totalqty']==null)?0:$row['totalqty'];                            //当前库存
 			$v[$arr]['delete']        = intval($row['disable'])==1 ? true : false;   //是否禁用
 			$v[$arr]['discountRate']  = 0;
 			$v[$arr]['id']            = intval($row['id']);
@@ -55,6 +62,7 @@ class Inventory extends CI_Controller {
 			$v[$arr]['unitId']        = intval($row['unitId']);
 			$v[$arr]['unitName']      = $row['unitName'];
 			$v[$arr]['remark']        = $row['remark'];
+			$v[$arr]['goodsIcon']        = $row['goodsIcon'];
 
 		}
 		$json['status'] = 200;
@@ -235,8 +243,8 @@ class Inventory extends CI_Controller {
 	public function add(){
 		$this->common_model->checkpurview(69);
 		$data = $this->input->post(NULL,TRUE);
-    $data['parent'] = $this->parent;
-    $data['created'] = $this->newTime;
+		$data['parent'] = $this->parent;
+		$data['created'] = $this->newTime;
 		if ($data) {
 			$data = $this->validform($data);
 			$this->mysql_model->get_count('goods',array('isDelete'=>0,'number'=>$data['number'])) > 0 && str_alert(-1,'商品编号重复');
@@ -258,7 +266,7 @@ class Inventory extends CI_Controller {
 					$v[$arr]['price']         = (float)$row['unitCost'];
 					$v[$arr]['amount']        = (float)$row['amount'];
 					$v[$arr]['skuId']         = intval($row['skuId']);
-					$v[$arr]['billDate']      = date('Y-m-d');;
+					$v[$arr]['billDate']      = date('Y-m-d');
 					$v[$arr]['billNo']        = '期初数量';
 					$v[$arr]['billType']      = 'INI';
 					$v[$arr]['transTypeName'] = '期初数量';
@@ -283,9 +291,9 @@ class Inventory extends CI_Controller {
 			    $this->db->trans_rollback();
 				str_alert(-1,'SQL错误回滚');
 			} else {
-			    $this->db->trans_commit();
-          $this->common_model->logs('新增商品:'.$data['name']);
-          str_alert(200,'success',$data);
+				$this->db->trans_commit();
+				$this->common_model->logs('新增商品:'.$data['name']);
+				str_alert(200,'success',$data);
 			}
 		}
 		str_alert(-1,'添加失败');

@@ -9,13 +9,21 @@ class Common_model extends CI_Model{
 
 
 	public function get_admin() {
-		return $this->mysql_model->get_rows('admin',array('uid'=>$this->jxcsys['uid'],'status'=>1));
+		$data = str_enhtml($this->input->post(NULL,TRUE));
+		if($data["type"] == "wechat") {
+			return $this->mysql_model->get_rows('admin',array('uid'=>$this->$data["userId"],'status'=>1));
+		} else{
+			return $this->mysql_model->get_rows('admin',array('uid'=>$this->jxcsys['uid'],'status'=>1));
+		}
+		
 	}
 
 
 
 	public function checkpurview($id=0) {
-	    !$this->jxcsys && redirect(site_url('login'));
+		$data = str_enhtml($this->input->post(NULL,TRUE));
+		if($data["type"] == "wechat") {} else{!$this->jxcsys && redirect(site_url('login'));}
+
 		if ($id>0) {
 			$data = $this->get_admin();
 			if (count($data)>0) {

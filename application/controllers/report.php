@@ -11,6 +11,13 @@ class Report extends CI_Controller {
     }
 
 	public function index() {
+		$data = str_enhtml($this->input->post(NULL,TRUE));
+		if($data["type"]=="wechat") {
+			$this->parent = $data["parent"];
+		}else{
+			$this->parent = $this->input->cookie("parent");//创建者
+		}
+
 	    $profit = $this->data_model->get_profit('and billDate<="'.date('Y-m-d').'"');
 
 		$inventory1  = $inventory2 = 0;
